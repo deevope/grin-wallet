@@ -51,6 +51,16 @@ fn comments() -> HashMap<String, String> {
 	);
 
 	retval.insert(
+		"owner_api_listen_interface".to_string(),
+		"
+#The api_owner interface on which to listen.
+#0.0.0.0 will listen on all interfaces, allowing others to interact
+#127.0.0.1 will listen on the local machine only
+"
+		.to_string(),
+	);
+
+	retval.insert(
 		"owner_api_listen_port".to_string(),
 		"
 #port for wallet owner api
