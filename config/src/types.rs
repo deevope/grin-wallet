@@ -65,7 +65,7 @@ impl Default for WalletConfig {
 		WalletConfig {
 			chain_type: Some(ChainTypes::Mainnet),
 			api_listen_port: 3415,
-			owner_api_listen_interface: WalletConfig::default_owner_api_listen_interface(),
+			owner_api_listen_interface: "127.0.0.1".to_string(),
 			owner_api_listen_port: Some(WalletConfig::default_owner_api_listen_port()),
 			api_secret_path: Some(".owner_api_secret".to_string()),
 			node_api_secret_path: Some(".api_secret".to_string()),
@@ -86,11 +86,6 @@ impl WalletConfig {
 	/// API Listen address
 	pub fn api_listen_addr(&self) -> String {
 		format!("127.0.0.1:{}", self.api_listen_port)
-	}
-
-	/// The owner api interface on which to listen by default
-	pub fn default_owner_api_listen_interface() -> String {
-		"127.0.0.1".to_string()
 	}
 
 	/// Default listener port

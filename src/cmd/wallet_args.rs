@@ -925,6 +925,10 @@ where
 		>,
 	),
 {
+	if wallet_args.is_present("external") {
+		wallet_config.owner_api_listen_interface = "0.0.0.0".to_string();
+	}
+
 	if let Some(dir) = wallet_args.value_of("top_level_dir") {
 		wallet_config.data_file_dir = dir.to_string().clone();
 	}
