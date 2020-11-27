@@ -101,8 +101,13 @@ impl WalletConfig {
 
 	/// Owner API listen address
 	pub fn owner_api_listen_addr(&self) -> String {
-		format!("{}:{}", self.owner_api_listen_interface, self.owner_api_listen_port())
+		format!(
+			"{}:{}",
+			self.owner_api_listen_interface,
+			self.owner_api_listen_port()
+		)
 	}
+}
 /// Error type wrapping config errors.
 #[derive(Debug)]
 pub enum ConfigError {
