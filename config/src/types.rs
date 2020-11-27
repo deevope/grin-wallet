@@ -31,6 +31,8 @@ pub struct WalletConfig {
 	pub api_listen_interface: String,
 	/// The port this wallet will run on
 	pub api_listen_port: u16,
+	/// The owner api interface on which to listen
+	pub owner_api_listen_interface: String,
 	/// The port this wallet's owner API will run on
 	pub owner_api_listen_port: Option<u16>,
 	/// Location of the secret for basic auth on the Owner API
@@ -64,6 +66,7 @@ impl Default for WalletConfig {
 			chain_type: Some(ChainTypes::Mainnet),
 			api_listen_interface: "127.0.0.1".to_string(),
 			api_listen_port: 3415,
+			owner_api_listen_interface: "127.0.0.1".to_string(),
 			owner_api_listen_port: Some(WalletConfig::default_owner_api_listen_port()),
 			api_secret_path: Some(".owner_api_secret".to_string()),
 			node_api_secret_path: Some(".api_secret".to_string()),
@@ -98,9 +101,8 @@ impl WalletConfig {
 
 	/// Owner API listen address
 	pub fn owner_api_listen_addr(&self) -> String {
-		format!("127.0.0.1:{}", self.owner_api_listen_port())
+		format!("{}:{}", self.owner_api_listen_interface, self.owner_api_listen_port())
 	}
-}
 /// Error type wrapping config errors.
 #[derive(Debug)]
 pub enum ConfigError {
